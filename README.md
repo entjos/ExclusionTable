@@ -6,7 +6,7 @@ This package provides an exclusion table in R with which you can keeping track o
 For installing the package from GitHub please use
 
 ```
-devtools::install_github("entjos/ExclusionTable")
+remotes::install_github("entjos/ExclusionTable")
 library(ExclusionTable)
 ```
 # Bugs
