@@ -157,7 +157,7 @@ exclusion_table <- function(
 
                return(table)
 
-             }) |>
+             }) %>%
       dplyr::bind_rows()
 
     # Add total no excluded observations
@@ -203,7 +203,7 @@ exclusion_table <- function(
 
                return(table)
 
-             }) |>
+             }) %>%
       dplyr::bind_rows()
 
     # Add total no excluded observations
