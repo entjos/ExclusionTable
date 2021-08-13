@@ -2,3 +2,4 @@
 
 export(exclusion_table)
 import(data.table)
+importFrom(magrittr,"%>%")

@@ -10,6 +10,7 @@ exclusion_table(
   exclusion_criteria = NULL,
   labels_inclusion = inclusion_criteria,
   labels_exclusion = exclusion_criteria,
+  obj = NULL,
   keep_data = TRUE
 )
 }
@@ -36,6 +37,10 @@ passed to \code{inclusion_criteria}}
 steps of exclusions. The default labels are the logical expressions
 passed to \code{exclusion_criteria}.}
 
+\item{obj}{A named list of objects that will be passed to the filtering call.
+The list can be access using \verb{obj$<name of object>} in the filtering
+call.}
+
 \item{keep_data}{A logical statement to indicate whether the new dataset without the
 excluded observations should be outputted. The default is \code{TRUE}.}
 }
@@ -52,12 +57,23 @@ are logical filter statements, i.e. statements that you would pass to
 \code{dplyr::filter()} or to \code{{data.table}}.
 }
 \examples{
+#Example without using the obj argument
 exclusion_table(
    data = mtcars,
    exclusion_criteria = c("disp <= 70 | disp >= 300",
                           "as.character(gear) == '4'"),
    labels_exclusion   = c("First exclusion",
                           "Second exclusion")
+)
+
+#Example using the obj argument
+my_selection <- c(8, 6)
+
+exclusion_table(
+  data = mtcars,
+  exclusion_criteria = c("cyl \%in\% my_selection"),
+  labels_exclusion   = c("First exclusion"),
+  obj = list(my_selection = my_selection)
 )
 
 }

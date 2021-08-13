@@ -1,5 +1,5 @@
 Package: ExclusionTable
-Title: Creating Tables of Excluded Observations.
+Title: Creating Tables of Excluded Observations
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Joshua P.",
@@ -7,14 +7,15 @@ Authors@R:
            role = c("aut", "cre"),
            email = "joshua.entrop@ki.se",
            comment = c(ORCID = "0000-0003-1614-8096"))
-Description: This is a conglomerat of functions used by Joshua Entrop, which will probably extend throught the time.
+Description: Creating exclusion and incusion tables.
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports:
-  dplyr (>= 1.0),
-  data.table (>= 1.14.0)
 Depends:
   R (>= 4.0)
+Imports:
+  dplyr,
+  magrittr,
+  data.table

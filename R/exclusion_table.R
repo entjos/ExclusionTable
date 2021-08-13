@@ -32,6 +32,11 @@
 #'    steps of inclusions. The default labels are the logical expressions
 #'    passed to `inclusion_criteria`
 #'
+#' @param obj
+#'    A named list of objects that will be passed to the filtering call.
+#'    The list can be access using `obj$<name of object>` in the filtering
+#'    call.
+#'
 #' @param keep_data
 #'    A logical statement to indicate whether the new dataset without the
 #'    excluded observations should be outputted. The default is `TRUE`.
@@ -43,6 +48,7 @@
 #'    as a `data.frame` in the list.
 #'
 #' @examples
+#' #Example without using the obj argument
 #' exclusion_table(
 #'    data = mtcars,
 #'    exclusion_criteria = c("disp <= 70 | disp >= 300",
@@ -51,7 +57,18 @@
 #'                           "Second exclusion")
 #')
 #'
+#' #Example using the obj argument
+#' my_selection <- c(8, 6)
+#'
+#' exclusion_table(
+#'   data = mtcars,
+#'   exclusion_criteria = c("cyl %in% my_selection"),
+#'   labels_exclusion   = c("First exclusion"),
+#'   obj = list(my_selection = my_selection)
+#' )
+#'
 #' @import data.table
+#' @importFrom magrittr %>%
 #'
 #' @export exclusion_table
 
@@ -61,6 +78,7 @@ exclusion_table <- function(
   exclusion_criteria = NULL,
   labels_inclusion = inclusion_criteria,
   labels_exclusion = exclusion_criteria,
+  obj = NULL,
   keep_data = TRUE)
 {
 
@@ -145,9 +163,7 @@ exclusion_table <- function(
                n_post <- nrow(excluded_data)
 
                # Save data set with exclusions
-               assign("data",
-                      excluded_data,
-                      envir = sys.frame(1))
+               data <<- excluded_data
 
                # Create table
                table <- data.frame(inclusion  = labels_inclusion[[i]],
@@ -191,9 +207,7 @@ exclusion_table <- function(
                n_post <- nrow(excluded_data)
 
                # Save data set with exclusions
-               assign("data",
-                      excluded_data,
-                      envir = sys.frame(1))
+               data <<- excluded_data
 
                # Create table
                table <- data.frame(exclusion  = labels_exclusion[[i]],
