@@ -42,10 +42,10 @@
 #'    excluded observations should be outputted. The default is `TRUE`.
 #'
 #' @return
-#'    A list of tables including information on no. excluded individuals
-#'    for each exclusion and inclusion criteria. If `keep_data == TRUE`
-#'    also the dataset without the excludes observation is included
-#'    as a `data.frame` in the list.
+#'    An `exl_tbl` objects which is a list of data frames including
+#'    information on no. excluded individuals for each exclusion and
+#'    inclusion criteria. If `keep_data == TRUE` also the dataset without
+#'    the excludes observation is included as a `data.frame` in the list.
 #'
 #' @examples
 #' #Example without using the obj argument
@@ -67,7 +67,6 @@
 #'   obj = list(my_selection = my_selection)
 #' )
 #'
-#' @import data.table
 #' @importFrom magrittr %>%
 #'
 #' @export exclusion_table
@@ -157,7 +156,8 @@ exclusion_table <- function(
 
                # Exclude observations
                excluded_data <-
-                 data.table::setDT(data)[eval(parse(text = filter_string)), ]
+                 subset(x      = data,
+                        subset = eval(parse(text = filter_string)))
 
                # Get no rows post exclusion
                n_post <- nrow(excluded_data)
@@ -201,7 +201,8 @@ exclusion_table <- function(
 
                # Exclude observations
                excluded_data <-
-                 data.table::setDT(data)[eval(parse(text = filter_string)), ]
+                 subset(x      = data,
+                        subset = eval(parse(text = filter_string)))
 
                # Get no rows post exclusion
                n_post <- nrow(excluded_data)
@@ -237,25 +238,22 @@ exclusion_table <- function(
 
     if(is.null(exclusion_criteria)){
 
-      return(list(
-        table_in = table_in,
-        dataset = data.frame(data)
-      ))
+      # Return output
+      out <- list(table_in = table_in,
+                  dataset  = data.frame(data))
 
     } else if(is.null(inclusion_criteria)){
 
-      return(list(
-        table_ex = table_ex,
-        dataset = data.frame(data)
-      ))
+      # Return output
+      out <- list(table_ex = table_ex,
+                  dataset  = data.frame(data))
 
     } else {
 
-      return(list(
-        table_in = table_in,
-        table_ex = table_ex,
-        dataset = data.frame(data)
-      ))
+      # Return output
+      out <- list(table_in = table_in,
+                  table_ex = table_ex,
+                  dataset  = data.frame(data))
 
     }
 
@@ -264,25 +262,28 @@ exclusion_table <- function(
 
     if(is.null(exclusion_criteria)){
 
-      return(list(
-        table_in = table_in
-      ))
+      # Return output
+      out <- list(table_in = table_in)
 
     } else if(is.null(inclusion_criteria)){
 
-      return(list(
-        table_ex = table_ex
-      ))
+      # Return output
+      out <- list(table_ex = table_ex)
 
     } else {
 
-      return(list(
-        table_in = table_in,
-        table_ex = table_ex
-      ))
+      # Return output
+      out <- list(table_in = table_in,
+                  table_ex = table_ex)
 
     }
 
   }
+
+  # Set object class
+
+  class(out) <- "exl_tbl"
+
+  return(out)
 
 }
