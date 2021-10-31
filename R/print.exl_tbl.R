@@ -1,20 +1,3 @@
-#' Funtion for printing = across the length of output
-#'
-#' @param i
-#'    An integer vector with the number of = to print.
-#'
-#' @noRd print_lines
-
-print_lines <- function(i){
-
-  stopifnot(is.integer(i))
-
-  for (j in seq(i)) {
-    cat("=")
-  }
-
-}
-
 #' Prints `exl_tbl` objects
 #'
 #' This is print function for `exl_tbl` objects, which outputed by
@@ -28,7 +11,7 @@ print_lines <- function(i){
 #'
 #' @importFrom magrittr %>%
 #'
-#' @Method print exl_tbl
+#' @method print exl_tbl
 #'
 #' @export
 
@@ -130,13 +113,9 @@ print.exl_tbl <- function(x, ...){
   length_out <- length_out + 6L
 
   # Start printing output -----------------------------------------------------
-  cat("\n")
-  print_lines(length_out)
-
+  cat("\n", rep("=", length_out), sep = "")
   cat("\nExcluded the following observations:")
-
-  cat("\n")
-  print_lines(length_out)
+  cat("\n", rep("=", length_out), sep = "")
 
   # Print Inclusions
   if(!is.null(x$table_in)){
@@ -156,13 +135,5 @@ print.exl_tbl <- function(x, ...){
 
   }
 
-  # Print nate if the dataset was stored
-  if(!is.null(x$dataset)){
-
-    cat("\n\nNOTE: The clean dataset has been stored.")
-
-  }
-
-  cat("\n")
-  print_lines(length_out)
+  cat("\n", rep("=", length_out), sep = "")
 }
