@@ -97,11 +97,6 @@ exclusion_table <- function(
                 " are unspecified. Plase specify at least one of them."))
   }
 
-  if(!is.null(inclusion_criteria) & !is.null(exclusion_criteria)){
-    message(paste0("inclusion criterias will be applied prior to",
-                   " to exclusion criteria"))
-  }
-
   # Check inclusion_criteria argument if specified
   if(!is.null(inclusion_criteria)){
 
