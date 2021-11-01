@@ -18,3 +18,9 @@ Depends:
 Imports:
   dplyr,
   magrittr
+Suggests: 
+    rmarkdown,
+    knitr,
+    NHANES,
+    remotes
+VignetteBuilder: knitr
