@@ -15,7 +15,7 @@ exclusion_table(
 )
 }
 \arguments{
-\item{data}{A dataframe on  wich the exclusions are to be performed.}
+\item{data}{A dataframe on which the exclusions are to be performed.}
 
 \item{inclusion_criteria}{A character vector of logical expressions that are used for
 inclusions. All individuals who meet these criteria will be included.

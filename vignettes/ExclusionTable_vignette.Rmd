@@ -102,4 +102,4 @@ exclusion_table(NHANES,
 
 By supplying objects as names lists to the <TT>obj</TT> argument of <TT>exclusion_table</TT> we can access them in our filter calls using <TT>obj$\<name of your object\></TT>.
 
-To summarise the <TT>ExclusionTable::exclusion_table()</TT> function allows you to easily keep track of your exclusion and inclusion criteria and helps you to report how many individuals you excluded at each step. If you have any questions or suggestions please write me an [email](mailto:joshuaentrop@posteo.de) or contact me on [Twitter](twitter.com/entjos) or file an issue on [GitHub](https://github.com/entjos/ExclusionTable).
+To summaries the <TT>ExclusionTable::exclusion_table()</TT> function allows you to easily keep track of your exclusion and inclusion criteria and helps you to report how many individuals you excluded at each step. If you have any questions or suggestions please write me an [email](mailto:joshuaentrop@posteo.de) or contact me on [Twitter](twitter.com/entjos/) or file an issue on [GitHub](https://github.com/entjos/ExclusionTable/).

@@ -12,6 +12,6 @@
 \item{...}{Other arguments that should be past to print.}
 }
 \description{
-This is print function for \code{exl_tbl} objects, which outputed by
-\code{exlcusion_table()}. The function imporves the readability of the output.
+This is a print function for \code{exl_tbl} objects, created with
+\code{exlcusion_table()}. The function improves the readability of the output.
 }

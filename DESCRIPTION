@@ -1,21 +1,19 @@
 Package: ExclusionTable
 Title: Creating Tables of Excluded Observations
-Version: 1.0
+Version: 1.0.0
 Authors@R: 
     person(given = "Joshua P.",
            family = "Entrop",
            role = c("aut", "cre"),
            email = "joshuaentrop@posteo.de",
            comment = c(ORCID = "0000-0003-1614-8096"))
-Description: This package can be used to keep track of the numbers of 
-    observations that you exclude from your dataset. Instead of counting 
-    observations before and after a subset() call, the ExclusionTable() 
-    function reports the number before and after each subset() call together 
-    with the number of observations that have been excluded. This is 
-    especially usefull in observational studies for keeping track 
-    how many observations have been excluded for each in-/ or 
-    exclusion criteria. You just need tp provide ExclusionTable with a dataset 
-    and a list of logical filter statements.
+Description: Instead of counting observations before and after a `subset()` 
+    call, the `ExclusionTable()` function reports the number before and after 
+    each `subset()` call together with the number of observations that have been 
+    excluded. This is especially useful in observational studies for keeping 
+    track how many observations have been excluded for each in-/ or 
+    exclusion criteria. You just need to provide `ExclusionTable()` with a 
+    dataset and a list of logical filter statements.
 License: CC BY 4.0
 Encoding: UTF-8
 URL: https://github.com/entjos/ExclusionTable

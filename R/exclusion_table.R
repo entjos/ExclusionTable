@@ -6,7 +6,7 @@
 #' `dplyr::filter()` or to `{data.table}`.
 #'
 #' @param data
-#'    A dataframe on  wich the exclusions are to be performed.
+#'    A dataframe on which the exclusions are to be performed.
 #'
 #' @param exclusion_criteria
 #'    A character vector of logical expressions that are used for

@@ -1,7 +1,7 @@
 #' Prints `exl_tbl` objects
 #'
-#' This is print function for `exl_tbl` objects, which outputed by
-#' `exlcusion_table()`. The function imporves the readability of the output.
+#' This is a print function for `exl_tbl` objects, created with
+#' `exlcusion_table()`. The function improves the readability of the output.
 #'
 #' @param x
 #'    An `exl_tbl` object.
