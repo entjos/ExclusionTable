@@ -18,7 +18,7 @@
 print.exl_tbl <- function(x, ...){
 
   # Check for right class
-  if(class(x) != "exl_tbl"){
+  if(!inherits(x, "exl_tbl")){
 
     stop("Object is not of class exl_tbl")
 

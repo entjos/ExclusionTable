@@ -3,3 +3,4 @@
 ^LICENSE\.md$
 ^doc$
 ^Meta$
+^cran-comments\.md

@@ -17,9 +17,9 @@ For this let's imagine we are working with data from the the US National Health 
 
 ```{r, message=FALSE, warning=FALSE}
 # Load packages
-library(NHANES)  # NHANES dataset
-library(dplyr)   # Data manipulation
-library(remotes) # Install packages from GitHub
+library(NHANES)         # NHANES dataset
+library(dplyr)          # Data manipulation
+library(ExclusionTable)
 
 # Attach data
 data("NHANES")
@@ -37,18 +37,7 @@ NHANES_subset <- NHANES %>%
 nrow(NHANES_subset)
 ```
 
-The code above obtained the subpopulation of the study population that we are interest in. For this we excluded 9,269 of the 10,000 observations leaving us with 731 observations in the dataset. However, we don't know how many observations we excluded at each step, i.e. based on each of the three criteria. Often we want to report those numbers in our articles, e.g. in study population flow-charts. That's were the <TT>{ExclusionTable}</TT> package makes your life easier. First let's install the package from GitHub.
-
-```{r, eval=FALSE}
-# Install {ExclusionTable} from GitHub
-remotes::install_github("entjos/ExclusionTable",
-                        ref = "main")
-```
-
-```{r, message=FALSE}
-# Load package
-library(ExclusionTable)
-```
+The code above obtained the subpopulation of the study population that we are interest in. For this we excluded 9,269 of the 10,000 observations leaving us with 731 observations in the dataset. However, we don't know how many observations we excluded at each step, i.e. based on each of the three criteria. Often we want to report those numbers in our articles, e.g. in study population flow-charts. That's were the <TT>{ExclusionTable}</TT> package makes your life easier.
 
 The <TT>ExclusionTable::exclusion_table()</TT> function takes as first argument a dataframe and as second and third arguments a character vector of inclusion and exclusion criteria, respectively. Let's try this function for our previous exclusions and inclusions. For this let's set <TT>keep_data = FALSE</TT>, since we are for now only interested in obtaining the numbers of excluded individuals.
 
