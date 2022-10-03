@@ -1,3 +1,10 @@
+# Version 1.0.0
+
+## Resubmission
+This is a resubmission. In this version I have:
+  - Removed quote from function names in the description file
+  - Added "https://" to the beginning of all web links and added trailing slashes.
+
 ## R CMD check results
 There were no ERRORs, or WARNINGs.
 
