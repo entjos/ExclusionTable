@@ -42,10 +42,14 @@
 #'    excluded observations should be outputted. The default is `TRUE`.
 #'
 #' @return
-#'    An `exl_tbl` objects which is a list of data frames including
-#'    information on no. excluded individuals for each exclusion and
-#'    inclusion criteria. If `keep_data == TRUE` also the dataset without
-#'    the excludes observation is included as a `data.frame` in the list.
+#'    `exclusion_table` returns a `exl_tbl` object which is a list of
+#'    data frames including the following information:
+#'    \item{`table_in`}{a `data.frame` including the number of observations
+#'    excluded for each inclusion criteria listed in `inclusion_criteria`.}
+#'    \item{`table_ex`}{a `data.frame` including the number of observations
+#'    excluded for each exclusion criteria listed in `exclusion_criteria`.}
+#'    \item{`dataset`}{a `data.frame` of the supplied dataset after applying
+#'    all inclusion and exclusion criteria.}
 #'
 #' @examples
 #' #Example without using the obj argument

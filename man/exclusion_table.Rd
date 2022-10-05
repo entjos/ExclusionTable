@@ -45,10 +45,14 @@ call.}
 excluded observations should be outputted. The default is \code{TRUE}.}
 }
 \value{
-An \code{exl_tbl} objects which is a list of data frames including
-information on no. excluded individuals for each exclusion and
-inclusion criteria. If \code{keep_data == TRUE} also the dataset without
-the excludes observation is included as a \code{data.frame} in the list.
+\code{exclusion_table} returns a \code{exl_tbl} object which is a list of
+data frames including the following information:
+\item{\code{table_in}}{a \code{data.frame} including the number of observations
+excluded for each inclusion criteria listed in \code{inclusion_criteria}.}
+\item{\code{table_ex}}{a \code{data.frame} including the number of observations
+excluded for each exclusion criteria listed in \code{exclusion_criteria}.}
+\item{\code{dataset}}{a \code{data.frame} of the supplied dataset after applying
+all inclusion and exclusion criteria.}
 }
 \description{
 This function keeps track of how many observations you exclude by using
