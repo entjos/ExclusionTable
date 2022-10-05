@@ -9,6 +9,8 @@
 #' @param ...
 #'    Other arguments that should be past to print.
 #'
+#' @return
+#'    No return value, called for side effects.
 #' @importFrom magrittr %>%
 #'
 #' @method print exl_tbl

@@ -11,6 +11,9 @@
 
 \item{...}{Other arguments that should be past to print.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This is a print function for \code{exl_tbl} objects, created with
 \code{exlcusion_table()}. The function improves the readability of the output.
