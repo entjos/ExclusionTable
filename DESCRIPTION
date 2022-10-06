@@ -1,6 +1,6 @@
 Package: ExclusionTable
 Title: Creating Tables of Excluded Observations
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: 
     person(given = "Joshua P.",
            family = "Entrop",
