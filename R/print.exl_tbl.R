@@ -137,5 +137,5 @@ print.exl_tbl <- function(x, ...){
 
   }
 
-  cat("\n", rep("=", length_out), sep = "")
+  cat("\n", rep("=", length_out), "\n\n", sep = "")
 }
