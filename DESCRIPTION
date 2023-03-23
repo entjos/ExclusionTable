@@ -26,8 +26,7 @@ Depends:
 Imports:
     cli,
     dplyr,
-    magrittr,
-    rlang
+    magrittr
 Suggests: 
     rmarkdown,
     knitr,
