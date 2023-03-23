@@ -96,7 +96,7 @@ exclusion_table <- function(
     cli::cli_abort("{.var data} is not a {.cls data.frame} object.")
   }
 
-  if(is.null(inclusion_criteria) & is.null(exclusion_criteria)){
+  if(is.null(inclusion_criteria) && is.null(exclusion_criteria)){
     cli::cli_abort(c(
       "Require at least one criterion",
       "x" = "Both {.var inclusion_criteria} and {.var exclusion_criteria} are unspecified.",
