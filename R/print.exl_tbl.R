@@ -7,7 +7,7 @@
 #'    An `exl_tbl` object.
 #'
 #' @param ...
-#'    Other arguments that should be past to print.
+#'    Other arguments that should be passed to print.
 #'
 #' @return
 #'    No return value, called for side effects.
@@ -22,12 +22,15 @@ print.exl_tbl <- function(x, ...){
   # Check for right class
   if(!inherits(x, "exl_tbl")){
 
-    stop("Object is not of class exl_tbl")
+    cli::cli_abort(c(
+      "Must pass {.cls exl_tbl} object",
+      "x" = "You passed a {.cls {class(x)}} object.")
+    )
 
   }
 
   # Determine the output length for display -----------------------------------
-  if(!is.null(x$table_in) & !is.null(x$table_ex)){
+  if(!is.null(x$table_in) && !is.null(x$table_ex)){
 
     # Check the maximal number of characters in each line of table_ex
     length_ex <- vapply(seq(nrow(x$table_ex)),
@@ -115,27 +118,39 @@ print.exl_tbl <- function(x, ...){
   length_out <- length_out + 6L
 
   # Start printing output -----------------------------------------------------
-  cat("\n", rep("=", length_out), sep = "")
-  cat("\nExcluded the following observations:")
-  cat("\n", rep("=", length_out), sep = "")
+
+  cli::cli_div(theme = list(rule = list(color = "cyan", "line-type" = "double")))
+  cli::cli_rule(left = "{.pkg ExclusionTable} Summary")
+  cli::cli_end()
 
   # Print Inclusions
   if(!is.null(x$table_in)){
 
-    cat("\nExclusions based on INCLUSION criteria\n\n")
+    cli::cli_div(theme = list(span.emph = list(color = "green")))
+    cli::cli_h3("Exclusions based on {.emph INCLUSION} criteria")
+    cli::cli_end()
+    cat("\n")
 
     print(x$table_in)
 
+    cat("\n")
   }
 
   # Print exclusions
   if(!is.null(x$table_ex)){
 
-    cat("\nExclusions based on EXCLUSION criteria\n\n")
+    cli::cli_div(theme = list(span.emph = list(color = "red")))
+    cli::cli_h3("Exclusions based on {.emph EXCLUSION} criteria")
+    cli::cli_end()
+    cat("\n")
 
     print(x$table_ex)
 
   }
 
-  cat("\n", rep("=", length_out), "\n\n", sep = "")
+  cat("\n")
+  cli::cli_div(theme = list(rule = list(color = "cyan", "line-type" = "double")))
+  cli::cli_rule()
+  cli::cli_end()
+
 }
