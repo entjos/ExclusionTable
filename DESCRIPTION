@@ -24,8 +24,9 @@ RoxygenNote: 7.2.1
 Depends:
   R (>= 4.0)
 Imports:
-  dplyr,
-  magrittr
+    cli,
+    dplyr,
+    magrittr
 Suggests: 
     rmarkdown,
     knitr,

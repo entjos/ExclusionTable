@@ -89,34 +89,44 @@ exclusion_table <- function(
 
   # General checks on types
   if(is.null(data)){
-    stop("argument 'data' is missing. Plaese specify a dataset.")
+    cli::cli_abort(c("Argument {.var data} is missing.", " " = "Please specify a dataset."))
   }
 
   if(is.data.frame(data) == FALSE){
-    stop("'data' is not an object of class dataframe.")
+    cli::cli_abort("{.var data} is not a {.cls data.frame} object.")
   }
 
-  if(is.null(inclusion_criteria) & is.null(exclusion_criteria)){
-    stop(paste0("both 'inclusion_criteria' and 'exclusion_criteria'",
-                " are unspecified. Plase specify at least one of them."))
+  if(is.null(inclusion_criteria) && is.null(exclusion_criteria)){
+    cli::cli_abort(c(
+      "Require at least one criterion",
+      "x" = "Both {.var inclusion_criteria} and {.var exclusion_criteria} are unspecified.",
+      " " = "Please specify at least one of them.")
+      )
   }
 
   # Check inclusion_criteria argument if specified
   if(!is.null(inclusion_criteria)){
 
     if(is.character(inclusion_criteria) == FALSE){
-      stop(paste0("'inclusion_criteria' is not a",
-                  " character vector."))
+      cli::cli_abort(c(
+        "{.var inclusion_criteria} must be a {.cls character} vector.",
+        "x" = "{.var inclusion_criteria} is a {.cls {class(inclusion_criteria)} vector.")
+        )
     }
 
     if(is.character(labels_inclusion) == FALSE){
-      stop(paste0("'labels_inclusion' is not a",
-                  " character vector."))
+      cli::cli_abort(c(
+        "{.var labels_inclusion} must be a {.cls character} vector.",
+        "x" = "But is a {.cls {class(labels_inclusion)} vector.")
+      )
     }
 
     if(length(labels_inclusion) != length(inclusion_criteria)){
-      stop(paste0("'inclusion_criteria' and 'labels_inclusion' must",
-                  " have the same length."))
+      cli::cli_abort(c(
+        "{.var labels_inclusion} and {.var inclusion_criteria} must have same length.",
+        "x" = "{.var labels_inclusion} has length {length(labels_inclusion)} but
+        {.var inclusion_criteria} has length {length(inclusion_criteria)}.")
+      )
     }
   }
 
@@ -124,18 +134,25 @@ exclusion_table <- function(
   if(!is.null(exclusion_criteria)){
 
     if(is.character(exclusion_criteria) == FALSE){
-      stop(paste0("'exclusion_criteria' is not a",
-                  " character vector."))
+      cli::cli_abort(c(
+        "{.var exclusion_criteria} must be a {.cls character} vector.",
+        "x" = "{.var exclusion_criteria} is a {.cls {class(exclusion_criteria)} vector.")
+      )
     }
 
     if(is.character(labels_exclusion) == FALSE){
-      stop(paste0("'labels_exclusion' is not a",
-                  " character vector."))
+      cli::cli_abort(c(
+        "{.var labels_exclusion} must be a {.cls character} vector.",
+        "x" = "{.var labels_exclusion} is a {.cls {class(labels_exclusion)} vector.")
+      )
     }
 
     if(length(labels_exclusion) != length(exclusion_criteria)){
-      stop(paste0("'exclusion_criteria' and 'labels_exclusion' must",
-                  " have the same length."))
+      cli::cli_abort(c(
+        "{.var labels_exclusion} and {.var exclusion_criteria} must have same length.",
+        "x" = "{.var labels_exclusion} has length {length(labels_exclusion)} but
+        {.var exclusion_criteria} has length {length(exclusion_criteria)}.")
+      )
     }
 
   }
