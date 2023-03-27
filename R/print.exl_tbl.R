@@ -119,38 +119,28 @@ print.exl_tbl <- function(x, ...){
 
   # Start printing output -----------------------------------------------------
 
-  cli::cli_div(theme = list(rule = list(color = "cyan", "line-type" = "double")))
-  cli::cli_rule(left = "{.pkg ExclusionTable} Summary")
-  cli::cli_end()
+  cat("\n", rep("=", length_out), sep = "")
+  cat("\nExcluded the following observations:")
+  cat("\n", rep("=", length_out), sep = "")
 
   # Print Inclusions
   if(!is.null(x$table_in)){
 
-    cli::cli_div(theme = list(span.emph = list(color = "green")))
-    cli::cli_h3("Exclusions based on {.emph INCLUSION} criteria")
-    cli::cli_end()
-    cat("\n")
+    cat("\nExclusions based on INCLUSION criteria\n\n")
 
     print(x$table_in)
 
-    cat("\n")
   }
 
   # Print exclusions
   if(!is.null(x$table_ex)){
 
-    cli::cli_div(theme = list(span.emph = list(color = "red")))
-    cli::cli_h3("Exclusions based on {.emph EXCLUSION} criteria")
-    cli::cli_end()
-    cat("\n")
+    cat("\nExclusions based on EXCLUSION criteria\n\n")
 
     print(x$table_ex)
 
   }
 
-  cat("\n")
-  cli::cli_div(theme = list(rule = list(color = "cyan", "line-type" = "double")))
-  cli::cli_rule()
-  cli::cli_end()
+  cat("\n", rep("=", length_out), "\n\n", sep = "")
 
 }
