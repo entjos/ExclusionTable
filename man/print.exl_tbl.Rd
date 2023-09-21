@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An \code{exl_tbl} object.}
 
-\item{...}{Other arguments that should be past to print.}
+\item{...}{Other arguments that should be passed to print.}
 }
 \value{
 No return value, called for side effects.
