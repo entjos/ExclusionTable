@@ -1,4 +1,12 @@
-# Version 1.0.0
+# ExclusionTable 1.0.1
+
+## R CMD check results
+ERROR 0 | WARNINGS 0 | NOTES 0
+
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
+
+# ExclusionTable 1.0.0
 
 ## Resubmission
 This is a resubmission. In this version I have:
@@ -20,4 +28,4 @@ There was one NOTE on the Windows Server 2022, R-devel, 64 bit:
 This can likely be ignored as discussed in r-hub issue [503](https://github.com/r-hub/rhub/issues/503).
 
 ## Downstream dependencies
-There are currently no downstream dependencies for this package
+There are currently no downstream dependencies for this package.
