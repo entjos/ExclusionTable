@@ -1,5 +1,5 @@
 <!-- badges: start -->
-  [![R-CMD-check](https://github.com/entjos/JointFPM/workflows/R-CMD-check/badge.svg)](https://github.com/entjos/JointFPM/actions)
+[![R-CMD-check](https://github.com/entjos/ExclusionTable/workflows/R-CMD-check/badge.svg)](https://github.com/entjos/ExclusionTable/actions)
 <!-- badges: end -->
 
 # Description
