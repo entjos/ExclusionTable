@@ -1,5 +1,7 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/entjos/ExclusionTable/workflows/R-CMD-check/badge.svg)](https://github.com/entjos/ExclusionTable/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/ExclusionTable)](https://CRAN.R-project.org/package=ExclusionTable)
+[![](https://cranlogs.r-pkg.org/badges/ExclusionTable)](https://cran.r-project.org/package=ExclusionTable)
 <!-- badges: end -->
 
 # Description
@@ -51,4 +53,4 @@ remotes::install_github("entjos/ExclusionTable")
 library(ExclusionTable)
 ```
 # Bugs
-If you find any bugs or have any suggestions please don't hesitate to file an issue on GitHub or contact me via [my website](https://www.joshua-entrop.com/), [Twitter](https://twitter.com/entjos) or [email](mailto:joshua.entrop@ki.se).
+If you find any bugs or have any suggestions please don't hesitate to file an issue on GitHub or contact me via [my website](https://www.joshua-entrop.com/), [Twitter](https://twitter.com/entjos/) or [email](mailto:joshua.entrop@ki.se).
