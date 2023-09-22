@@ -1,3 +1,5 @@
+# ExclusionTable (development version)
+
 # ExclusionTable 1.1.0
 
 - Improved error messaged using `cli`
