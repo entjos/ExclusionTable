@@ -20,7 +20,8 @@ Description: Instead of counting observations before and after a subset()
     dataset and a list of logical filter statements.
 License: CC BY 4.0
 Encoding: UTF-8
-URL: https://github.com/entjos/ExclusionTable/
+URL: https://github.com/entjos/ExclusionTable/,
+    https://entjos.github.io/ExclusionTable/
 BugReports: https://github.com/entjos/ExclusionTable/issues/
 LazyData: true
 Roxygen: list(markdown = TRUE)
