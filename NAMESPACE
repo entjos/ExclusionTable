@@ -2,4 +2,3 @@
 
 S3method(print,exl_tbl)
 export(exclusion_table)
-importFrom(magrittr,"%>%")
