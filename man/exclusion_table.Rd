@@ -11,7 +11,8 @@ exclusion_table(
   labels_inclusion = inclusion_criteria,
   labels_exclusion = exclusion_criteria,
   obj = NULL,
-  keep_data = TRUE
+  keep_data = TRUE,
+  id = NULL
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ call.}
 
 \item{keep_data}{A logical statement to indicate whether the new dataset without the
 excluded observations should be outputted. The default is \code{TRUE}.}
+
+\item{id}{Optional name of a unique ID variable in the dataset.}
 }
 \value{
 \code{exclusion_table} returns a \code{exl_tbl} object which is a list of
@@ -53,6 +56,10 @@ excluded for each inclusion criteria listed in \code{inclusion_criteria}.}
 excluded for each exclusion criteria listed in \code{exclusion_criteria}.}
 \item{\code{dataset}}{a \code{data.frame} of the supplied dataset after applying
 all inclusion and exclusion criteria.}
+
+If \code{id} is supplied, an additional column is added to \code{table_in} and
+\code{table_ex} including a list of the ids that have been excluded from
+the dataset in each step.
 }
 \description{
 This function keeps track of how many observations you exclude by using

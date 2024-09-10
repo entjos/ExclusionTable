@@ -11,7 +11,6 @@
 #'
 #' @return
 #'    No return value, called for side effects.
-#' @importFrom magrittr %>%
 #'
 #' @method print exl_tbl
 #'
@@ -28,6 +27,9 @@ print.exl_tbl <- function(x, ...){
     )
 
   }
+
+  # Remove ID column from printing
+  x$table_ex$ids <- x$table_in$ids <- NULL
 
   # Determine the output length for display -----------------------------------
   if(!is.null(x$table_in) && !is.null(x$table_ex)){
@@ -46,9 +48,9 @@ print.exl_tbl <- function(x, ...){
                                        nchar(colnames(x$table_ex)[j]),
                                        na.rm = TRUE)
 
-                                 }) %>% sum()
+                                 }) |> sum()
 
-                        }) %>% max()
+                        }) |> max()
 
     # Check the maximal number of characters in each line of table_in
     length_in <- vapply(seq(nrow(x$table_in)),
@@ -64,9 +66,9 @@ print.exl_tbl <- function(x, ...){
                                        nchar(colnames(x$table_in)[j]),
                                        na.rm = TRUE)
 
-                                 }) %>% sum()
+                                 }) |> sum()
 
-                        }) %>% max()
+                        }) |> max()
 
     # Take maxium nchar from table_in and table_ex
     length_out <- max(length_ex, length_in)
@@ -88,9 +90,9 @@ print.exl_tbl <- function(x, ...){
                                         nchar(colnames(x$table_in)[j]),
                                         na.rm = TRUE)
 
-                                  }) %>% sum()
+                                  }) |> sum()
 
-                         }) %>% max()
+                         }) |>  max()
 
   } else if(!is.null(x$table_ex)) {
 
@@ -108,9 +110,9 @@ print.exl_tbl <- function(x, ...){
                                         nchar(colnames(x$table_ex)[j]),
                                         na.rm = TRUE)
 
-                                  }) %>% sum()
+                                  }) |> sum()
 
-                         }) %>% max()
+                         }) |> max()
 
   }
 
@@ -128,7 +130,7 @@ print.exl_tbl <- function(x, ...){
 
     cat("\nExclusions based on INCLUSION criteria\n\n")
 
-    print(x$table_in)
+    print(as.data.frame(x$table_in))
 
   }
 
@@ -137,7 +139,7 @@ print.exl_tbl <- function(x, ...){
 
     cat("\nExclusions based on EXCLUSION criteria\n\n")
 
-    print(x$table_ex)
+    print(as.data.frame(x$table_ex))
 
   }
 

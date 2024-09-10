@@ -41,6 +41,9 @@
 #'    A logical statement to indicate whether the new dataset without the
 #'    excluded observations should be outputted. The default is `TRUE`.
 #'
+#' @param id
+#'    Optional name of a unique ID variable in the dataset.
+#'
 #' @return
 #'    `exclusion_table` returns a `exl_tbl` object which is a list of
 #'    data frames including the following information:
@@ -50,6 +53,10 @@
 #'    excluded for each exclusion criteria listed in `exclusion_criteria`.}
 #'    \item{`dataset`}{a `data.frame` of the supplied dataset after applying
 #'    all inclusion and exclusion criteria.}
+#'
+#'    If `id` is supplied, an additional column is added to `table_in` and
+#'    `table_ex` including a list of the ids that have been excluded from
+#'    the dataset in each step.
 #'
 #' @examples
 #' #Example without using the obj argument
@@ -71,19 +78,16 @@
 #'   obj = list(my_selection = my_selection)
 #' )
 #'
-#' @importFrom magrittr %>%
-#'
 #' @export exclusion_table
 
-exclusion_table <- function(
-  data = NULL,
-  inclusion_criteria = NULL,
-  exclusion_criteria = NULL,
-  labels_inclusion = inclusion_criteria,
-  labels_exclusion = exclusion_criteria,
-  obj = NULL,
-  keep_data = TRUE)
-{
+exclusion_table <- function(data = NULL,
+                            inclusion_criteria = NULL,
+                            exclusion_criteria = NULL,
+                            labels_inclusion = inclusion_criteria,
+                            labels_exclusion = exclusion_criteria,
+                            obj = NULL,
+                            keep_data = TRUE,
+                            id = NULL){
 
   # Check inputs
 
@@ -101,7 +105,7 @@ exclusion_table <- function(
       "Require at least one criterion",
       "x" = "Both {.var inclusion_criteria} and {.var exclusion_criteria} are unspecified.",
       " " = "Please specify at least one of them.")
-      )
+    )
   }
 
   # Check inclusion_criteria argument if specified
@@ -111,7 +115,7 @@ exclusion_table <- function(
       cli::cli_abort(c(
         "{.var inclusion_criteria} must be a {.cls character} vector.",
         "x" = "{.var inclusion_criteria} is a {.cls {class(inclusion_criteria)} vector.")
-        )
+      )
     }
 
     if(is.character(labels_inclusion) == FALSE){
@@ -157,6 +161,26 @@ exclusion_table <- function(
 
   }
 
+  if(!is.null(id)){
+    if(!is.character(id)){
+      cli::cli_abort(
+        c(x = "{.var id} is not of type character")
+      )
+    } else if (!id %in% colnames(data)){
+      cli::cli_abort(
+        c(x = "{.var id} cannot be found in {.var data}.")
+      )
+    } else if (length(id) > 1){
+      cli::cli_abort(
+        c(x = "{.var id} includes more than one column name.",
+          i = "Suppliying multiple ID columns is not supported.")
+      )
+    } else if(length(unique(data[[id]])) < nrow(data)){
+      c(x = "{.var id} is not unique.",
+        i = "Please supply an ID variable that uniquely identifies observations")
+    }
+  }
+
   # Apply inclusion criteria
   if(!is.null(inclusion_criteria)){
 
@@ -178,28 +202,49 @@ exclusion_table <- function(
                # Get no rows post exclusion
                n_post <- nrow(excluded_data)
 
+               # Save id number of excluded observations
+               if(!is.null(id)){
+
+                 ids <- data[[id]][!data[[id]] %in% excluded_data[[id]]]
+
+               }
+
                # Save data set with exclusions
                data <<- excluded_data
 
                # Create table
-               table <- data.frame(inclusion  = labels_inclusion[[i]],
-                                   n_prior    = n_prior,
-                                   n_post     = n_post,
-                                   n_excluded = n_prior - n_post)
+               table <- data.table::data.table(
+                 inclusion  = labels_inclusion[[i]],
+                 n_prior    = n_prior,
+                 n_post     = n_post,
+                 n_excluded = n_prior - n_post
+               )
+
+               if(!is.null(id)){
+                 table$ids <- list(ids)
+               }
 
                return(table)
 
-             }) %>%
-      dplyr::bind_rows()
+             }) |>
+      data.table::rbindlist()
 
     # Add total no excluded observations
     table_in <-
       rbind(table_in,
-            data.frame(inclusion  = "TOTAL",
-                       n_prior    = max(table_in$n_prior),
-                       n_post     = min(table_in$n_post),
-                       n_excluded = max(table_in$n_prior) - min(table_in$n_post)
-            ))
+            data.table::data.table(
+              inclusion  = "TOTAL",
+              n_prior    = max(table_in$n_prior),
+              n_post     = min(table_in$n_post),
+              n_excluded = max(table_in$n_prior) - min(table_in$n_post)
+            ), fill = TRUE)
+
+    if(!is.null(id)){
+
+      table_in$ids[[nrow(table_in)]] <- Reduce(c, table_in$ids)
+
+    }
+
   }
 
   # Apply exclusion criteria
@@ -223,28 +268,48 @@ exclusion_table <- function(
                # Get no rows post exclusion
                n_post <- nrow(excluded_data)
 
+               # Save id number of excluded observations
+               if(!is.null(id)){
+
+                 ids <- data[[id]][!data[[id]] %in% excluded_data[[id]]]
+
+               }
+
                # Save data set with exclusions
                data <<- excluded_data
 
                # Create table
-               table <- data.frame(exclusion  = labels_exclusion[[i]],
-                                   n_prior    = n_prior,
-                                   n_post     = n_post,
-                                   n_excluded = n_prior - n_post)
+               table <- data.table::data.table(
+                 exclusion  = labels_exclusion[[i]],
+                 n_prior    = n_prior,
+                 n_post     = n_post,
+                 n_excluded = n_prior - n_post
+               )
+
+               if(!is.null(id)){
+                 table$ids <- list(ids)
+               }
 
                return(table)
 
-             }) %>%
-      dplyr::bind_rows()
+             }) |>
+      data.table::rbindlist()
 
     # Add total no excluded observations
     table_ex <-
       rbind(table_ex,
-            data.frame(exclusion  = "TOTAL",
-                       n_prior    = max(table_ex$n_prior),
-                       n_post     = min(table_ex$n_post),
-                       n_excluded = max(table_ex$n_prior) - min(table_ex$n_post)
-            ))
+            data.table::data.table(
+              exclusion  = "TOTAL",
+              n_prior    = max(table_ex$n_prior),
+              n_post     = min(table_ex$n_post),
+              n_excluded = max(table_ex$n_prior) - min(table_ex$n_post)
+            ), fill = TRUE)
+
+    if(!is.null(id)){
+
+      table_ex$ids[[nrow(table_ex)]] <- Reduce(c, table_ex$ids)
+
+    }
   }
 
   # Return dataset after exclusions and table with exclusions
@@ -255,20 +320,20 @@ exclusion_table <- function(
     if(is.null(exclusion_criteria)){
 
       # Return output
-      out <- list(table_in = table_in,
+      out <- list(table_in = data.frame(table_in),
                   dataset  = data.frame(data))
 
     } else if(is.null(inclusion_criteria)){
 
       # Return output
-      out <- list(table_ex = table_ex,
+      out <- list(table_ex = data.frame(table_ex),
                   dataset  = data.frame(data))
 
     } else {
 
       # Return output
-      out <- list(table_in = table_in,
-                  table_ex = table_ex,
+      out <- list(table_in = data.frame(table_in),
+                  table_ex = data.frame(table_ex),
                   dataset  = data.frame(data))
 
     }

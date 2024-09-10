@@ -1,5 +1,6 @@
 # ExclusionTable (development version)
 
+- Added `id` argument to `exclusion_table()`, which allows to return a list with ids of observations that have been removed at each inclusion and exclusion step.
 # ExclusionTable 1.1.0
 
 - Improved error messaged using `cli`
