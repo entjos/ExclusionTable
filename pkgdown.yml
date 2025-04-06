@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   ExclusionTable_vignette: ExclusionTable_vignette.html
-last_built: 2025-04-06T11:40Z
+last_built: 2025-04-06T11:41Z
 urls:
   reference: https://entjos.github.io/ExclusionTable/reference
   article: https://entjos.github.io/ExclusionTable/articles
