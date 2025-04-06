@@ -58,7 +58,7 @@ excluded for each exclusion criteria listed in \code{exclusion_criteria}.}
 all inclusion and exclusion criteria.}
 
 If \code{id} is supplied, an additional column is added to \code{table_in} and
-\code{table_ex} including a list of the ids that have been excluded from
+\code{table_ex} including a list of the IDs that have been excluded from
 the dataset in each step.
 }
 \description{

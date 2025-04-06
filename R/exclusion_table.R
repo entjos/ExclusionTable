@@ -55,7 +55,7 @@
 #'    all inclusion and exclusion criteria.}
 #'
 #'    If `id` is supplied, an additional column is added to `table_in` and
-#'    `table_ex` including a list of the ids that have been excluded from
+#'    `table_ex` including a list of the IDs that have been excluded from
 #'    the dataset in each step.
 #'
 #' @examples

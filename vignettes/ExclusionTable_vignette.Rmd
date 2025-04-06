@@ -102,4 +102,19 @@ exclusion_table(NHANES,
 
 By supplying objects as names lists to the <TT>obj</TT> argument of <TT>exclusion_table</TT> we can access them in our filter calls using <TT>obj$\<name of your object\></TT>.
 
+Lastely, we sometimes might also be interested in which specific observations we exclude with each inclusion/exclusion criteria. For this we can use the `id` argument, which allows us to get a list of IDs, that have been excluded at each step. Let's take a look at the following example:
+
+```{r, MESSAGE=FALSE}
+NHANES_ex_id <- 
+  exclusion_table(NHANES,
+                  exclusion_criteria = "is.na(BMI)",
+                  labels_exclusion   = "Missing BMI",
+                  id                 = "ID",
+                  keep_data = FALSE)
+
+NHANES_ex_id$table_ex
+```
+
+The `table_ex` objects now includes a list with the excluded IDs for each exclusion/inclusion criteria.
+
 To summaries the <TT>ExclusionTable::exclusion_table()</TT> function allows you to easily keep track of your exclusion and inclusion criteria and helps you to report how many individuals you excluded at each step. If you have any questions or suggestions please write me an [email](mailto:joshuaentrop@posteo.de) or contact me on [Twitter](https://twitter.com/entjos/) or file an issue on [GitHub](https://github.com/entjos/ExclusionTable/).
