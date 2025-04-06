@@ -260,6 +260,30 @@ individuals who live in a home with 2, 4 and 9 rooms.</p>
 <p>By supplying objects as names lists to the <tt>obj</tt> argument of
 <tt>exclusion_table</tt> we can access them in our filter calls using
 <tt>obj$&lt;name of your object&gt;</tt>.</p>
+<p>Lastely, we sometimes might also be interested in which specific
+observations we exclude with each inclusion/exclusion criteria. For this
+we can use the <code>id</code> argument, which allows us to get a list
+of IDs, that have been excluded at each step. Let’s take a look at the
+following example:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">NHANES_ex_id</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="../reference/exclusion_table.html">exclusion_table</a></span><span class="op">(</span><span class="va">NHANES</span>,</span>
+<span>                  exclusion_criteria <span class="op">=</span> <span class="st">"is.na(BMI)"</span>,</span>
+<span>                  labels_exclusion   <span class="op">=</span> <span class="st">"Missing BMI"</span>,</span>
+<span>                  id                 <span class="op">=</span> <span class="st">"ID"</span>,</span>
+<span>                  keep_data <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">NHANES_ex_id</span><span class="op">$</span><span class="va">table_ex</span></span></code></pre></div>
+<pre><code><span><span class="co">##      exclusion n_prior n_post n_excluded</span></span>
+<span><span class="co">##         &lt;char&gt;   &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span></span>
+<span><span class="co">## 1: Missing BMI   10000   9634        366</span></span>
+<span><span class="co">## 2:       TOTAL   10000   9634        366</span></span>
+<span><span class="co">##                                        ids</span></span>
+<span><span class="co">##                                     &lt;list&gt;</span></span>
+<span><span class="co">## 1: 51755,51962,52066,52248,52248,52266,...</span></span>
+<span><span class="co">## 2: 51755,51962,52066,52248,52248,52266,...</span></span></code></pre>
+<p>The <code>table_ex</code> objects now includes a list with the
+excluded IDs for each exclusion/inclusion criteria.</p>
 <p>To summaries the <tt>ExclusionTable::exclusion_table()</tt> function
 allows you to easily keep track of your exclusion and inclusion criteria
 and helps you to report how many individuals you excluded at each step.
